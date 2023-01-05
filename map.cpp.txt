@@ -1,0 +1,12 @@
+#include<iostream>
+#include<map>
+using namespace std;
+
+int main(){
+    map<string,int> statedb;
+    statedb["maharashtra"] = 10;
+    statedb["madhya pradesh"] = 20;
+    for(auto data: statedb){
+        cout<<data.first <<" "<<data.second <<endl;
+    }
+}

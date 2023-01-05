@@ -1,0 +1,63 @@
+#include<iostream>
+using namespace std;
+int n;
+#define size 10
+template<class T>
+void sel(T A[size]){
+    int i, j, min;
+    T temp;
+    for(i=0; i<n-1; i++){
+        min=i;
+        for(j=i+1; j<n; j++){
+            if(A[j]<A[i])
+            min=j;
+        }
+        temp=A[i];
+        A[i]=A[min];
+        A[min]=temp;
+    }
+    cout<<"\nSorted array : ";
+    for(i=0; i<n; i++){
+        cout<<" "<<A[i];
+    }
+}
+int main(){
+    int A[size], i, ch;
+    float B[size];
+    do{
+        cout<<"\nSELECTION SORT SYSTEM";
+        cout<<"\nMENU";
+        cout<<"\n1.  integer element";
+        cout<<"\n2.  float element";
+        cout<<"\n3. Exit";
+        cout<<"\nEnter your choice";
+        cin>>ch;
+
+        switch(ch){
+            case 1:
+            cout<<"\nEnter the total no of element ";
+            cin>>n;
+            cout<<"\nEnter the integer values";
+            for(i=0; i<n; i++){
+                cin>>A[i];
+            }
+            sel(A);
+            break;
+
+            case 2:
+            cout<<"\nEnter the total no of element ";
+            cin>>n;
+            cout<<"\nEnter the float values";
+            for(i=0; i<n; i++){
+                cin>>B[i];
+            }
+            sel(B);
+            break;
+
+            case 3:
+            exit(0);
+
+        }
+    }while (ch!=3);
+   return 0;
+}

@@ -1,0 +1,58 @@
+#include<iostream>
+#include<fstream>
+using namespace std;
+class Employee
+{
+  string Name;
+  int ID;
+  double salary;
+
+  public:
+  void accept()
+  {
+    cout<<"Name :";
+    cin.ignore();
+    getline(cin,Name);
+    cout<<"ID :";
+    cin>>ID;
+    cout<<"salary :";
+    cin>>salary;
+  }
+
+  void display()
+  {
+    cout<<"namee : "<< Name<<endl;
+    cout<<"ID :"<<ID<<ID<<endl;
+    cout<<"salary :"<<salary<<endl;
+  }
+};
+
+int main()
+{
+  Employee o[5];
+  fstream f;
+  int i,n;
+
+  f.open("fuck,txt",ios::out);
+  cout<<"Enter no. of employees"<<endl;
+  cin>>n;
+  for(i=0;i<n;i++)
+  {
+    cout<<"the info of the employee"<<i+1<<endl;
+    o[i].accept();
+    f.write((char *) & o[i], sizeof o[i]);
+  }
+  f.close();
+
+  f.open("fuck,txt",ios::in);
+  cout<<"\n";
+  cout<<"the info of tthe employe are as follows :"<<endl;
+  for(i=0;i<n;i++)
+  {
+    cout<<" employee"<<i+1<<endl;
+    f.write((char *) & o[i], sizeof o[i]);
+    o[i].display();
+  }
+  f.close();
+  return 0;
+}

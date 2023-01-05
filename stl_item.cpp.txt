@@ -1,0 +1,137 @@
+#include <iostream> 
+#include<string>
+#include <algorithm> 
+#include <vector>
+
+using namespace std;
+class Item 
+{
+ public:
+ string name;
+ int quantity;
+ int cost;
+ int code;
+ bool operator==(const Item& p) 
+ {
+ if(code==p.code) 
+ return 1;
+ return 0;
+ }
+ bool operator<(const Item& p)
+ {
+ if(code<p.code) 
+ return 1;
+ return 0;
+ }
+};
+vector<Item> v1;
+void print(Item &i1)
+{
+ cout<<"\n";
+ cout<<"\nItem Name : "<<i1.name;
+ cout<<"\nItem Quantity : "<<i1.quantity;
+ cout<<"\nItem Cost : "<<i1.cost;
+ cout<<"\nItem Code : "<<i1.code;
+ cout<<"\n\n";
+}
+void display()
+{
+ for_each(v1.begin(),v1.end(),print);
+}
+void insert()
+{
+ Item i1;
+ cout<<"\nEnter Item Name : ";
+ cin>>i1.name;
+ cout<<"\nEnter Item Quantity : ";
+ cin>>i1.quantity;
+ cout<<"\nEnter Item Cost : ";
+ cin>>i1.cost;
+ cout<<"\nEnter Item Code : ";
+ cin>>i1.code;
+ v1.push_back(i1);
+}
+void search()
+{
+ vector<Item>::iterator p;
+ Item i1;
+ cout<<"\nEnter Item Code to search : ";
+ cin>>i1.code;
+ p=find(v1.begin(),v1.end(),i1);
+ if(p==v1.end())
+ {
+ cout<<"\nNot found!!!";
+ }
+ else
+ {
+ cout<<"\nFound!!!";
+ }
+}
+void deletee()
+{
+ vector<Item>::iterator p;
+ Item i1;
+ cout<<"\nEnter Item Code to delete : ";
+ cin>>i1.code;
+ p=find(v1.begin(),v1.end(),i1);
+ if(p==v1.end())
+ {
+ cout<<"\nNOT PRESENT!";
+ }
+ else
+ {
+ v1.erase(p);
+ cout<<"\nDeleted!!!";
+ }
+}
+bool compare(const Item &p1, const Item &p2)
+{
+
+ return p1.cost < p2.cost;
+}
+int main()
+{
+ int ch;
+ do
+ {
+ cout<<"\nCHOOSE";
+ cout<<"\n1.Insert";
+ cout<<"\n2.Display";
+ cout<<"\n3.Search";
+ cout<<"\n4.Sort";
+ cout<<"\n5.Delete";
+ cout<<"\n6.Exit";
+ cout<<"\nEnter your choice : ";
+ cin>>ch;
+
+ switch(ch)
+ {
+ case 1:
+ insert();
+ break;
+
+ case 2:
+ display();
+ break;
+
+ case 3:
+ search();
+ break;
+
+ case 4:
+ sort(v1.begin(),v1.end(),compare);
+ cout<<"\n\n Sorted on Cost : ";
+ display();
+ break;
+
+ case 5:
+ deletee();
+ break;
+
+ case 6:
+ exit(0);
+ }
+ 
+ }while(ch!=7);
+ return 0;
+}
